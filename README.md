@@ -1,9 +1,13 @@
 # Deep-Neural-Network-Compression-CV1
 Developed a deep learning and computer vision project focused on compressing CNN models through pruning, quantization, and Huffman coding to enable efficient deployment on resource-constrained devices.
+
 A PyTorch-based implementation of a neural network compression framework that combines iterative pruning, weight quantization, and compressed model storage to reduce the memory footprint of a VGG-inspired CNN trained on the CIFAR-10 dataset. The project focuses on achieving efficient deployment while maintaining competitive classification performance.
-Overview
+
+Overview :
 Deep neural networks often contain millions of parameters, making them expensive to deploy on devices with limited computational resources. This project demonstrates a complete compression workflow that progressively reduces model size without significantly affecting prediction accuracy.
+
 The pipeline includes:
+
 Training a baseline convolutional network
 Magnitude-based weight pruning
 Fine-tuning the sparse network
@@ -19,26 +23,31 @@ Quantize remaining weights using K-Means clustering
 Save the compressed parameters
 Reload the compressed model
 Validate inference performance
-Features
+
+Features : 
 Weight Pruning
 Iterative magnitude-based pruning strategy
 Removes parameters with low importance
 Binary masks preserve sparsity during training
 Weight rewinding improves optimization after each pruning stage
-Weight Quantization
+
+Weight Quantization:
 Applies K-Means clustering to non-zero weights
 Replaces floating-point values with shared centroids
 Supports configurable cluster counts
 Current implementation uses 8 clusters (3-bit representation)
-Model Compression
+
+Model Compression:
 Stores compressed weights using NumPy's compressed format (.npz)
 Significantly lowers storage requirements
 Enables efficient serialization and loading
-Deployment
+
+Deployment:
 Reconstructs the compressed network
 Loads parameters directly from compressed files
 Performs inference without additional retraining
-Installation
+
+Installation:
 Create a virtual environment and install the required packages.
 python3 -m venv .venv
 source .venv/bin/activate
@@ -63,7 +72,8 @@ Executes inference on sample inputs
 Determine Optimal Number of Clusters
 python analysis/kmeans_elbow.py
 This utility generates an elbow curve to help select an appropriate number of quantization clusters.
-Project Directory
+
+Project Directory:
 .
 ├── models/
 │   └── model.py                 # CNN architecture
@@ -91,8 +101,9 @@ Project Directory
 ├── config.py                    # Configuration and hyperparameters
 ├── main.py                      # Complete training pipeline
 └── deploy.py                    # Inference script
-Using the Compressed Model
-Run
+
+Using the Compressed Model:
+Run-
 python deploy.py
 or import it inside another script:
 from deployment.load_model import (
